@@ -1,0 +1,139 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" x:Class="Accounting_of_goods_in_a_warehouse_in_a_hardware_store.MainWindow"
+        Title="Warehouse Management" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <!-- Основная страница -->
+            <TabItem Header="Основная страница">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="195*"/>
+                        <ColumnDefinition Width="202*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="159*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="214*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Меню -->
+                    <Menu Grid.Row="0" Grid.ColumnSpan="2" Margin="0,-5,0,5" Background="White">
+                        <MenuItem Header="Сортировка" Height="31" Width="88" Background="#FFE6E4E4">
+                            <MenuItem Header="По типу" Click="SortByType_Click"/>
+                            <MenuItem Header="По бренду" Click="SortByBrand_Click"/>
+                            <MenuItem Header="По названию" Click="SortByName_Click"/>
+                            <MenuItem Header="По цене" Click="SortByPrice_Click"/>
+                        </MenuItem>
+                    </Menu>
+
+                    <!-- Поисковая строка -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Margin="0,-2,11,0" Height="30" Width="303">
+                        <TextBox x:Name="searchTextBox" Width="150" Height="20"/>
+                        <Button Content="Искать" Margin="5" Click="Search_Click"/>
+                        <Button Content="Сбросить поиск" Margin="5" Click="ResetSearch_Click"/>
+                    </StackPanel>
+
+                    <!-- DataGrid с товарами -->
+                    <DataGrid x:Name="productDataGrid" Grid.Row="1" AutoGenerateColumns="False"
+                              IsReadOnly="True" Grid.ColumnSpan="2" Grid.RowSpan="3">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Тип" Binding="{Binding Type}"/>
+                            <DataGridTextColumn Header="Брэнд" Binding="{Binding Brand}"/>
+                            <DataGridTextColumn Header="Название" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Цена" Binding="{Binding Price}"/>
+                            <DataGridTextColumn Header="Артикул" Binding="{Binding Code}"/>
+                            <DataGridTextColumn Header="Кол-во" Binding="{Binding Quantity}"/>
+                        </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Добавить на выдачу" Click="AddToCart_Click"/>
+                                <MenuItem Header="Изменить данные" Click="DataReplace_Click"/>
+                                <MenuItem Header="Удалить из склада" Click="Delete_Click"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!-- Выдача -->
+            <TabItem x:Name="cartTab" Header="Выдача">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- DataGrid с товарами в корзине -->
+                    <DataGrid x:Name="cartDataGrid" Grid.Row="0" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Тип" Binding="{Binding Type}"/>
+                            <DataGridTextColumn Header="Брэнд" Binding="{Binding Brand}"/>
+                            <DataGridTextColumn Header="Название" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Цена" Binding="{Binding Price}"/>
+                            <DataGridTextColumn Header="Артикул" Binding="{Binding Code}"/>
+                            <DataGridTextColumn Header="Кол-во" Binding="{Binding Quantity}"/>
+                        </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Вернуть товар на склад" Click="ReturnToWarehouse_Click"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                    </DataGrid>
+
+                    <!-- Кнопка "Списать товар" -->
+                    <Button x:Name="writeOffButton" Grid.Row="1" Content="Выдать товар" HorizontalAlignment="Right" Margin="10" Click="WriteOffButton_Click"/>
+                </Grid>
+            </TabItem>
+
+
+
+
+
+
+            <!-- Принять товар -->
+            <TabItem x:Name="receiveProductTab" Header="Приемка">
+                <Grid>
+                    <!-- Здесь располагается содержимое окна приемки -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Тип:" Grid.Row="0" Grid.Column="0" Margin="5"/>
+                    <TextBox x:Name="TypeTextBox" Grid.Row="0" Grid.Column="1" Margin="5"/>
+
+                    <TextBlock Text="Бренд:" Grid.Row="1" Grid.Column="0" Margin="5"/>
+                    <TextBox x:Name="BrandTextBox" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+                    <TextBlock Text="Название:" Grid.Row="2" Grid.Column="0" Margin="5"/>
+                    <TextBox x:Name="NameTextBox" Grid.Row="2" Grid.Column="1" Margin="5"/>
+
+                    <TextBlock Text="Цена:" Grid.Row="3" Grid.Column="0" Margin="5"/>
+                    <TextBox x:Name="PriceTextBox" Grid.Row="3" Grid.Column="1" Margin="5"/>
+
+                    <TextBlock Text="Кол-во шт.:" Grid.Row="4" Grid.Column="0" Margin="5"/>
+                    <TextBox x:Name="QuantityTextBox" Grid.Row="4" Grid.Column="1" Margin="5"/>
+
+                    <TextBlock Text="Код производителя:" Grid.Row="5" Grid.Column="0" Margin="5"/>
+                    <TextBox x:Name="CodeTextBox" Grid.Row="5" Grid.Column="1" Margin="5"/>
+
+                    <Button Content="Добавить" Click="AddProductButton_Click" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5"/>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

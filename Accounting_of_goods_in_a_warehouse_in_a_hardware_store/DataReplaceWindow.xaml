@@ -1,0 +1,45 @@
+﻿<Window x:Class="Accounting_of_goods_in_a_warehouse_in_a_hardware_store.DataReplaceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Data Replace" Height="300" Width="400">
+    <Grid>
+        <!-- Здесь располагается содержимое окна приемки -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Тип:" Grid.Row="0" Grid.Column="0" Margin="5"/>
+        <TextBox x:Name="typeTextBox" Grid.Row="0" Grid.Column="1" Margin="5"/>
+
+        <TextBlock Text="Бренд:" Grid.Row="1" Grid.Column="0" Margin="5"/>
+        <TextBox x:Name="brandTextBox" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+        <TextBlock Text="Название:" Grid.Row="2" Grid.Column="0" Margin="5"/>
+        <TextBox x:Name="nameTextBox" Grid.Row="2" Grid.Column="1" Margin="5"/>
+
+        <TextBlock Text="Цена:" Grid.Row="3" Grid.Column="0" Margin="5"/>
+        <TextBox x:Name="priceTextBox" Grid.Row="3" Grid.Column="1" Margin="5"/>
+
+        <TextBlock Text="Кол-во шт.:" Grid.Row="4" Grid.Column="0" Margin="5"/>
+        <TextBox x:Name="quantityTextBox" Grid.Row="4" Grid.Column="1" Margin="5"/>
+
+        <TextBlock Text="Код производителя:" Grid.Row="5" Grid.Column="0" Margin="5"/>
+        <TextBox x:Name="codeTextBox" Grid.Row="5" Grid.Column="1" Margin="5"/>
+
+        <Button Click="ApplyButton_Click" Content="Применить" Grid.Row="7" HorizontalAlignment="Left" Margin="166,32,0,-37" Grid.Column="1"/>
+        <Button Click="CancelButton_Click" Content=" Отменить " Grid.Row="7" HorizontalAlignment="Left" Margin="166,57,0,-62" Grid.Column="1"/>
+
+    </Grid>
+</Window>
+
